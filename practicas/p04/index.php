@@ -96,13 +96,25 @@
         echo '$z[0] = "MySQL";<br>';
         $z[0] = "MySQL";
         var_dump($z);
-        echo '<br>// Reemplaza la primera casilla del arreglo con "MySQL"<br><br><hr>';
+        echo '<br>// Reemplaza la primera casilla del arreglo con "MySQL"<br><br><br>';
 
+        //CUARTO EJERCICIO -------------------------------------
+        
+        //echo con $GLOBALS
+        echo 'Variables usando $GLOBALS: <br><br>';
+        echo '$a: ', $GLOBALS['a'], '<br>';
+        echo '$b: ', $GLOBALS['b'], '<br>';
+        echo '$c: ', $GLOBALS['c'], '<br>';
+        echo '$z[]: ', var_dump($GLOBALS['z']), '<br><hr>';
+        
         //unset variables
         unset($a);
         unset($b);
         unset($c);
         unset($z);
+
+
+
     ?>
 </body>
 </html>
