@@ -61,7 +61,7 @@
         unset($c);
 
         //TERCER EJERCICIO -------------------------------------
-        echo '<hr><h2>Ejercicio 3</h2>';
+        echo '<hr><h2>Ejercicio 3 y 4</h2>';
 
         echo '$a = "PHP5";<br>';
         $a = "PHP5";
@@ -112,6 +112,22 @@
         unset($b);
         unset($c);
         unset($z);
+
+        //QUINTO EJERCICIO -------------------------------------
+        echo '<h2>Ejercicio 5</h2>';
+        echo '$a = “7 personas”;<br>
+                $b = (integer) $a;<br>
+                $a = “9E3”;<br>
+                $c = (double) $a;<br><br>';
+
+        $a = "7 personas";
+        $b = (integer) $a;
+        $a = "9E3";
+        $c = (double) $a;
+
+        //explicación
+        echo '$a: ', $a , '<br>', '$b: ', $b, '<br>','$c: ', $c, '<br><br> 1. se le asigna un string a $a<br> 2. se intenta convertir a entero $a, como empieza con 7, se le asigna ese<br>3. Se le asigna un número en notación científica a $a<br> 4. Se convierte a double $a, PHP reconoce automáticamente la notación científica <br><hr> ';
+
 
 
 
