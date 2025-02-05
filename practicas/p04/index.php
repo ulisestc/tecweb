@@ -21,9 +21,10 @@
         echo '<h4>Respuesta:</h4>';   
     
         echo '<ul>';
+        echo '<li>Como sabemos, para declarar una variable necesitamos: <br> 1. Representar con un $. <br> 2. Iniciar el nombre con una letra o guión bajo (seguido de cualquier # de letra, número o guión bajo) <br> <br>';
         echo '<li>$_myvar es válida porque inicia con guión bajo.</li>';
         echo '<li>$_7var es válida porque inicia con guión bajo.</li>';
-        echo '<li>myvar es inválida porque no tiene el signo de dolar ($).</li>';
+        echo '<li>myvar es inválida porque no esta representada con un ($).</li>';
         echo '<li>$myvar es válida porque inicia con una letra.</li>';
         echo '<li>$var7 es válida porque inicia con una letra.</li>';
         echo '<li>$_element1 es válida porque inicia con guión bajo.</li>';
