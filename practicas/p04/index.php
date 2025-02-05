@@ -195,7 +195,18 @@
         echo "\$c: " . var_export($c, true) . "<br>";
         echo "\$e: " . var_export($e, true) . "<br><hr>";
 
+        unset($a);
+        unset($b);
+        unset($c);
+        unset($d);
+        unset($e);
+        unset($f);
 
+        //SEXTO EJERCICIO -------------------------------------
+        echo '<h2>Ejercicio 7</h2>';
+        echo '<b>Versión de Apache, Sistema Operativo del Servidor, y versión de  PHP: </b>', $_SERVER['SERVER_SOFTWARE'], '<br>';
+        // echo 'Sistema Operativo del servidor: ', $_SERVER['SERVER_SOFTWARE'], '<br>';
+        echo '<b>Idioma del navegador: </b>', $_SERVER['HTTP_ACCEPT_LANGUAGE'], '<br>';
     ?>
 </body>
 </html>
