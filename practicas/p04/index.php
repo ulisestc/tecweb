@@ -30,6 +30,32 @@
         echo '<li>$_element1 es válida porque inicia con guión bajo.</li>';
         echo '<li>$house*5 es inválida porque el símbolo * no está permitido.</li>';
         echo '</ul>';
+
+        echo '<hr><h2> Ejercicio 2 </h2>';
+        echo 'Se crean e inicializan variables a, b y c mediante:<br> <br>';
+        echo '$a = "ManejadorSQL"<br>';
+        echo '$b = "MySQL"<br>';
+        echo '$c = &$a;<br><br>';
+        
+        //primera inicialización
+        $a = "ManejadorSQL";
+        $b = 'MySQL';
+        $c = &$a;
+        echo '$a: ', $a , '<br>', '$b: ', $b, '<br>','$c: ', $c, '<br><br>';
+        
+        //segunda asignación
+        echo '$a = "PHP server"<br>';
+        echo '$b = &$a<br><br>';
+        $a = "PHP server";
+        $b = &$a;
+        echo '$a: ', $a , '<br>', '$b: ', $b, '<br>','$c: ', $c, '<br>';
+        
+        echo '<h4>¿Qué pasó en el segundo bloque de asignaciones?</h4>';
+        echo 'Respuesta: <br><br>  Se cambió el valor de $a, por lo que, toda variable apuntando a esta, se cambió igualmente. Además, se cambió el valor de $b, para que ahora apuntara a $a, por lo tanto: <br><br> $a es la variable original, y tanto $b como $c apuntan a ella';
+        
+        unset($a);
+        unset($b);
+        unset($c);
     ?>
 </body>
 </html>
