@@ -128,7 +128,72 @@
         //explicación
         echo '$a: ', $a , '<br>', '$b: ', $b, '<br>','$c: ', $c, '<br><br> 1. se le asigna un string a $a<br> 2. se intenta convertir a entero $a, como empieza con 7, se le asigna ese<br>3. Se le asigna un número en notación científica a $a<br> 4. Se convierte a double $a, PHP reconoce automáticamente la notación científica <br><hr> ';
 
+        unset($a);
+        unset($b);
+        unset($c);
 
+        //SEXTO EJERCICIO -------------------------------------
+        echo '<h2>Ejercicio 6</h2>$a = “0”;<br>
+                $b = “TRUE”;<br>
+                $c = FALSE;<br>
+                $d = ($a OR $b);<br>
+                $e = ($a AND $c);<br>
+                $f = ($a XOR $b);<br><br>';
+        
+        $a = "0";
+        $b = "TRUE";
+        $c = FALSE;
+        $d = ($a OR $b);
+        $e = ($a AND $c);
+        $f = ($a XOR $b);
+        
+        //var_dump($X)
+        echo '<br><h4>var_dump($X)</h4>// Muestra datos ingresados a la variable <br> $a: ';
+        var_dump($a);
+        echo '<br> $b: ';
+        var_dump($b);
+        echo '<br> $c: ';
+        var_dump($c);
+        echo '<br> $d: ';
+        var_dump($d);
+        echo '<br> $e: ';
+        var_dump($e);
+        echo '<br> $f: ';
+        var_dump($f);
+
+        //es variable booleana?
+        echo '<h4>is_bool()?</h4> // Muestra si la variable es booleana <br> $a: ';
+        var_dump(is_bool($a));
+        echo '<br> $b: ';
+        var_dump(is_bool($b));
+        echo '<br> $c: ';
+        var_dump(is_bool($c));
+        echo '<br> $d: ';
+        var_dump(is_bool($d));
+        echo '<br> $e: ';
+        var_dump(is_bool($e));
+        echo '<br> $f: ';
+        var_dump(is_bool($f));
+
+        //valor booleano dentro de la variable
+        echo '<br><h4>var_dump((bool)$X)</h4> // Convierte a booleano las variables <br> $a: ';
+        var_dump((bool)$a);
+        echo '<br> $b: ';
+        var_dump((bool)$b);
+        echo '<br> $c: ';
+        var_dump((bool)$c);
+        echo '<br> $d: ';
+        var_dump((bool)$d);
+        echo '<br> $e: ';
+        var_dump((bool)$e);
+        echo '<br> $f: ';
+        var_dump((bool)$f);
+
+        //Después investiga una función de PHP que permita transformar el valor booleano de $c y $e
+        // en uno que se pueda mostrar con un echo:
+        echo '<br><br><h4>Mostrando valores booleanos como texto: (var_export($X, true)) </h4>';
+        echo "\$c: " . var_export($c, true) . "<br>";
+        echo "\$e: " . var_export($e, true) . "<br><hr>";
 
 
     ?>
