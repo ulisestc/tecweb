@@ -95,32 +95,5 @@
         unset($arreglo);
         // var_dump($arreglo);
     }
-
-    function comprobar_edad_sexo(){
-        echo '<form action="" method="POST">
-                Sexo: 
-                <select name="sexo">
-                    <option value="">Selecciona</option>
-                    <option value="Masculino">Masculino</option>
-                    <option value="Femenino">Femenino</option>
-                    <option value="Otro">Otro</option>
-                </select>
-                <br>
-
-                Edad: <input type="number" name="edad" min="0" max="120"><br>
-                <br>
-                <input type="submit" value="Enviar">
-            </form>
-            <br>
-            ';
-        if(isset($_POST["sexo"]) && isset($_POST["edad"])){            
-            if ($_POST["sexo"] == "Femenino" && $_POST["edad"] >= 18 && $_POST["edad"] <= 35) {
-                echo 'Bienvenida, usted está en el rango de edad permitido.';
-            }   
-            else{
-                echo 'Error edad y/o sexo no permitido(s)';
-            }
-        }
-    }
 ?>
 

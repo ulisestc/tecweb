@@ -28,11 +28,13 @@
         arreglo_a_z();
 
         // EJERCICIO 5
-        echo '<hr><h2>Ejercicio 5</h2><p></p>';
-        comprobar_edad_sexo();
+        echo '<hr><h2>Ejercicio 5</h2><p>Usar las variables $edad y $sexo en una instrucción if para identificar una persona de sexo “femenino”, cuya edad oscile entre los 18 y 35 años y mostrar un mensaje de bienvenida apropiado.</p>';
+        echo    '<a href="ejercicio5.html">
+                    <button>Ir al formulario</button>
+                </a>';
         
         // EJERCICIO 6
-        echo '<hr><h2>Ejercicio 6</h2><p></p>';
+        echo '<hr><h2>Ejercicio 6</h2><p>Crea en código duro un arreglo asociativo que sirva para registrar el parque vehicular de una ciudad. [. . .]</p>';
         ?>
 
 </body>
