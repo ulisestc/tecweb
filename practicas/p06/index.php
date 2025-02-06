@@ -35,7 +35,9 @@
         
         // EJERCICIO 6
         echo '<hr><h2>Ejercicio 6</h2><p>Crea en código duro un arreglo asociativo que sirva para registrar el parque vehicular de una ciudad. [. . .]</p>';
-        ?>
-
+        echo    '<a href="ejercicio6.html">
+                    <button>Ir al formulario</button>
+                </a>';
+    ?>
 </body>
 </html>

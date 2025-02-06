@@ -19,7 +19,7 @@
     ?>
     <br>
     <a href="../ejercicio5.html">
-    <button>Regresar</button>
-</a>
+        <button>Regresar</button>
+    </a>
 </body>
 </html>
