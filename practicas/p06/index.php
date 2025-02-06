@@ -26,10 +26,13 @@
         // EJERCICIO 4
         echo '<hr><h2>Ejercicio 4</h2><p>Crear un arreglo cuyos índices van de 97 a 122 y cuyos valores son las letras de la ‘a’ a la ‘z’. Usa la función chr(n) que devuelve el caracter cuyo código ASCII es n para poner el valor en cada índice.</p>';
         arreglo_a_z();
-        // EJERCICIO 4
+
+        // EJERCICIO 5
         echo '<hr><h2>Ejercicio 5</h2><p></p>';
-
-
+        comprobar_edad_sexo();
+        
+        // EJERCICIO 6
+        echo '<hr><h2>Ejercicio 6</h2><p></p>';
         ?>
 
 </body>
