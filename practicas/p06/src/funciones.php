@@ -61,6 +61,7 @@
 
             do{
                 $num_aleatorio = rand(0,100);
+                echo "$num_aleatorio <br>";
             }
             while (($num_aleatorio % $num) != 0);
 
