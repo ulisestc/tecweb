@@ -3,7 +3,7 @@
         if(isset($_GET['numero']))
         {
             $num = $_GET['numero'];
-
+            
             if(($num % $a) == 0 && ($num % $b) == 0){
                 echo 'El número '. $num . ' <b>SI</b> es múltiplo de ' . $a . ' y ' . $b . ' <br> ';
             }
@@ -19,7 +19,7 @@
         unset($a);
         unset($b);
     }
-
+    
     function secuencia_aleatoria(){
         // Inciar variables
         $matriz = [];
@@ -42,9 +42,9 @@
         for ($i = 0; $i < $iteraciones; $i++){
             echo '<br>' . $matriz[$i][0] . ' ' . $matriz[$i][1] . ' ' . $matriz[$i][2];
         }
-
+        
         echo '<br><br>' . $numeros_generados . ' numeros generados en ' . $iteraciones . ' iteraciones.<br>';
-
+        
         // unsets
         unset($_1);
         unset($_2);
@@ -53,5 +53,41 @@
         unset($iteraciones);
         unset($numeros_generados);
     }
-?>
+
+    function numero_aleatorio_multiplicable(){
+        if(isset($_GET['numero'])){
+            $num = $_GET['numero'];
+            $num_aleatorio = NULL;
+
+            do{
+                $num_aleatorio = rand(0,100);
+            }
+            while (($num_aleatorio % $num) != 0);
+
+            echo $num . ' es multiplo de ' . $num_aleatorio;
+        }
+        else{
+            echo 'para comenzar, teclea "?numero=X en la barra de direcciones!"';
+        }
+
+        unset($num);
+        unset($num_aleatorio);
+    }
+
+    function arreglo_a_z(){
+
+        $arreglo = [];
+        
+        for($i = 97; $i <= 122; $i++){
+            $arreglo[$i] = chr($i);
+        }
+
+        foreach($arreglo as $index => $value){
+            echo $index . ': ' . $value . '<br>';
+        }
+
+        unset($arreglo);
+        // var_dump($arreglo);
+    }
+    ?>
 
