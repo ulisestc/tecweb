@@ -82,12 +82,18 @@
             $arreglo[$i] = chr($i);
         }
 
-        foreach($arreglo as $index => $value){
-            echo $index . ': ' . $value . '<br>';
+        // foreach($arreglo as $index => $value){
+        //     echo $index . ': ' . $value . '<br>';
+        // }
+        echo '<table border = 1>';
+        echo '<tr><th>Índice</th><th>Valor</th></tr>';
+        foreach ($arreglo as $index => $value) {
+            echo "<tr><td>$index</td><td>$value</td></tr>";
         }
+        echo '</table>';
 
         unset($arreglo);
         // var_dump($arreglo);
     }
-    ?>
+?>
 
