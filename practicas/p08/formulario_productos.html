@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Productos</title>
+</head>
+<body>
+    <form id="formularioProductos" action="http://localhost/practicas/p08/set_producto_v2.php" method="post">
+        
+        <h2>Información de los productos</h2>
+        <fieldset>
+            <legend>Insertar productos</legend>
+
+            <ul>
+                <li><label for="form-nombre">Nombre:</label> <input type="text" name="nombre" id="form-nombre"></li>
+                <li><label for="form-marca">Marca:</label> <input type="text" name="marca" id="form-marca"></li>
+                <li><label for="form-modelo">Modelo:</label> <input type="text" name="modelo" id="form-modelo"></li>
+                <li><label for="form-precio">Precio:</label> <input type="number" name="precio" id="form-precio"></li>
+                <li> <label for="form-detalles">Detalles:</label><br> <textarea name="detalles" id="form-detalles" rows="4" cols="20"></textarea> </li>
+                <li><label for="form-unidades">Unidades:</label> <input type="number" name="unidades" id="form-unidades"></li>
+                <li><label for="form-imagen">Imagen:</label> <input type="text" name="imagen" id="form-imagen" value="./p07/img/"></li>
+            </ul>
+        </fieldset>
+
+        <input type="submit" value="Agregar Producto">
+
+    </form>
+</body>
+</html>
