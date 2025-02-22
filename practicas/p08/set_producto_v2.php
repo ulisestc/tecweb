@@ -23,20 +23,20 @@
 
 
     /** Crear una tabla que no devuelve un conjunto de resultados */
-    $sql = "INSERT INTO productos VALUES (null, '{$_POST["nombre"]}' , '{$_POST["marca"]}', '{$_POST["modelo"]}', '{$_POST["precio"]}', '{$_POST["detalles"]}', '{$_POST["unidades"]}', '{$_POST["imagen"]}')";
+    $sql = "INSERT INTO productos VALUES (null, '{$_POST["nombre"]}' , '{$_POST["marca"]}', '{$_POST["modelo"]}', '{$_POST["precio"]}', '{$_POST["detalles"]}', '{$_POST["unidades"]}', '{$_POST["imagen"]}', 0)";
     if ( $link->query($sql) ) 
     {
         echo '<h1>Producto insertado</h1>
         <h2>Datos insertados:</h2>
-        <span>ID:</span>'.$link->insert_id.'
-        <br><span>Nombre:</span>'.$_POST["nombre"].'
-        <br><span>Marca:</span>'.$_POST["marca"].'
-        <br><span>Modelo:</span>'.$_POST["modelo"].'
+        <span>ID: </span>'.$link->insert_id.'
+        <br><span>Nombre: </span>'.$_POST["nombre"].'
+        <br><span>Marca: </span>'.$_POST["marca"].'
+        <br><span>Modelo: </span>'.$_POST["modelo"].'
         <br><span>Precio: $</span>'.$_POST["precio"].'
-        <br><span>Detalles:</span>'.$_POST["detalles"].'
-        <br><span>Unidades:</span>'.$_POST["unidades"].'
-        <br><span>Imagen:</span>'.$_POST["imagen"].'
-        ';
+        <br><span>Detalles: </span>'.$_POST["detalles"].'
+        <br><span>Unidades: </span>'.$_POST["unidades"].'
+        <br><span>Imagen: </span>'.$_POST["imagen"].'
+        <br><span>Eliminado: 0 (Falso)</span>';
     }
     else
     {
