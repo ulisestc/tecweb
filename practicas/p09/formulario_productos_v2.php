@@ -62,7 +62,7 @@
     </script>
 </head>
 <body>
-    <form id="formularioProductos" action="http://localhost/practicas/p08/set_producto_v2.php" method="post">
+    <form id="formularioProductos" action="http://localhost/practicas/p09/update_producto.php" method="post">
         
         <h2>Información de los productos</h2>
         <fieldset>
@@ -92,6 +92,8 @@
                         <option value="1" <?= (isset($_POST['eliminado']) && $_POST['eliminado'] == '1') ? 'selected' : '' ?>>1</option>
                     </select>
                 </li>
+
+                <li><input type="hidden" name="id" value="<?= htmlspecialchars($_POST['id'] ?? '') ?>"></li>
             </ul>
         </fieldset>
 
