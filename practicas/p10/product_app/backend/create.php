@@ -6,11 +6,23 @@
     if(!empty($producto)) {
         // SE TRANSFORMA EL STRING DEL JASON A OBJETO
         $jsonOBJ = json_decode($producto);
-        /**
-         * SUSTITUYE LA SIGUIENTE LÍNEA POR EL CÓDIGO QUE REALICE
-         * LA INSERCIÓN A LA BASE DE DATOS. COMO RESPUESTA REGRESA
-         * UN MENSAJE DE ÉXITO O DE ERROR, SEGÚN SEA EL CASO.
-         */
-        echo '[SERVIDOR] Nombre: '.$jsonOBJ->nombre;
+
+        @$link = new mysqli('localhost', 'root', 'ContrasenaSegura', 'marketzone');
+        if ($link->connect_errno) 
+        {
+            die(json_encode(['error' => 'Falló la conexión: '.$link->connect_error]));
+        }
+        $sql = "INSERT INTO productos(nombre, marca, modelo, precio, detalles, unidades, imagen) VALUES ('{$jsonOBJ->nombre}' , '{$jsonOBJ->marca}', '{$jsonOBJ->modelo}', '{$jsonOBJ->precio}', '{$jsonOBJ->detalles}', '{$jsonOBJ->unidades}', '{$jsonOBJ->imagen}')";
+        
+        if ( $link->query($sql) ) 
+        {
+            echo json_encode(['success' => 'Producto insertado']);
+        }
+        else
+        {
+            echo json_encode(['error' => 'El Producto no pudo ser insertado =(']);
+        }
+    
+        $link->close();
     }
 ?>
