@@ -12,8 +12,12 @@
       
         <ul></ul>
         <form>
-          <input name="search" id="search" type="search" placeholder="ID">
-          <button type="submit" onclick="buscarID(event)">Buscar</button>
+            <input name="id" id="id" type="search" placeholder="ID">
+            <input name="nombre" id="nombre" type="search" placeholder="Nombre">
+            <input name="marca" id="marca" type="search" placeholder="Marca">
+            <input name="detalles" id="detalles" type="search" placeholder="Detalles">
+          <button type="submit" onclick="buscarID(event)">Buscar por ID</button>
+          <button type="button" onclick="buscarProductos(event)">Buscar Productos</button>
         </form>
     </nav>
 
