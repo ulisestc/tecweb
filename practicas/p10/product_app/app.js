@@ -122,19 +122,73 @@ function agregarProducto(e) {
     // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
     finalJSON['nombre'] = document.getElementById('name').value;
     // SE OBTIENE EL STRING DEL JSON FINAL
-    productoJsonString = JSON.stringify(finalJSON,null,2);
+    productoJsonString = JSON.stringify(finalJSON, null, 2);
+    
+    console.log(finalJSON);
 
-    // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
-    var client = getXMLHttpRequest();
-    client.open('POST', './backend/create.php', true);
-    client.setRequestHeader('Content-Type', "application/json;charset=UTF-8");
-    client.onreadystatechange = function () {
-        // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
-        if (client.readyState == 4 && client.status == 200) {
-            console.log(client.responseText);
-        }
-    };
-    client.send(productoJsonString);
+    //validación de campos
+    let valid = true;
+    let errorMessage = "";
+
+    if (finalJSON['nombre'].length === 0 || finalJSON['nombre'].length > 100) {
+        valid = false;
+        errorMessage += "El nombre del producto no puede estar vacío o ser mayor a 100 caracteres\n";
+    }
+
+    if (!["Logitech", "Nvidia", "HyperX", "NZXT"].includes(finalJSON['marca'])) {
+        valid = false;
+        errorMessage += "La marca del producto no es válida\n";
+    }
+
+    if(finalJSON['modelo'].length> 25 || finalJSON['modelo'].match(/^[a-zA-Z0-9]+$/)){
+        valid = false;
+        errorMessage += "El modelo es requerido, debe ser alfanumérico y tener 25 caracteres o menos.\n";
+    }
+
+    if (isNaN(finalJSON['precio']) || finalJSON['precio'] <= 99.99) {
+        valid = false;
+        errorMessage += "El precio del producto no es válido (debe ser número y mayor a 99.99)\n";
+    }
+
+    if(finalJSON['detalles'].length> 250){
+        valid = false;
+        errorMessage += "Los detalles del producto no pueden ser mayores a 250 caracteres\n";
+    }
+
+    if (isNaN(finalJSON['unidades']) || finalJSON['unidades'] <= 0) {
+        valid = false;
+        errorMessage += "Las unidades del producto no son válidas (debe ser número y mayor a 0)\n";
+    }
+
+    if(finalJSON['imagen'].length > 50 || !finalJSON['imagen'].startsWith('img/')){
+        valid = false;
+        errorMessage += "La URL de la imagen del producto no puede ser mayor a 50 caracteres y debe comenzar con 'img/'\n";
+    }
+
+    if(!valid){
+        alert(errorMessage);
+        return;
+    }
+    else{
+        // alert(`Producto agregado correctamente:\nNombre: ${finalJSON.nombre}\nPrecio: ${finalJSON.precio}\nUnidades: ${finalJSON.unidades}\nModelo: ${finalJSON.modelo}\nMarca: ${finalJSON.marca}\nDetalles: ${finalJSON.detalles}\nImagen: ${finalJSON.imagen}`);
+        
+        // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
+        var client = getXMLHttpRequest();
+        client.open('POST', './backend/create.php', true);
+        client.setRequestHeader('Content-Type', "application/json;charset=UTF-8");
+        client.onreadystatechange = function () {
+            // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
+            if (client.readyState == 4 && client.status == 200) {
+                let response = JSON.parse(client.responseText);
+                if (response.error) {
+                    alert(response.error);
+                } else if (response.success) {
+                    alert(response.success);
+                }            
+            }
+        };
+        client.send(productoJsonString);
+    }
 }
 
 // SE CREA EL OBJETO DE CONEXIÓN COMPATIBLE CON EL NAVEGADOR

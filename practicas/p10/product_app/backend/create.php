@@ -12,15 +12,26 @@
         {
             die(json_encode(['error' => 'Falló la conexión: '.$link->connect_error]));
         }
-        $sql = "INSERT INTO productos(nombre, marca, modelo, precio, detalles, unidades, imagen) VALUES ('{$jsonOBJ->nombre}' , '{$jsonOBJ->marca}', '{$jsonOBJ->modelo}', '{$jsonOBJ->precio}', '{$jsonOBJ->detalles}', '{$jsonOBJ->unidades}', '{$jsonOBJ->imagen}')";
-        
-        if ( $link->query($sql) ) 
+
+        //validación
+        $valid = true;
+        $validation = "SELECT * FROM productos WHERE ( nombre = '{$jsonOBJ->nombre}' AND marca = '{$jsonOBJ->marca}') OR  ( marca = '{$jsonOBJ->marca}' AND modelo = '{$jsonOBJ->modelo}') AND eliminado = 0";
+        $result = $link->query($validation);
+
+        if ($result->num_rows > 0) 
         {
-            echo json_encode(['success' => 'Producto insertado']);
+            echo json_encode(['error' => 'Error, el producto ya existe']);
+            $valid = false;
         }
-        else
-        {
-            echo json_encode(['error' => 'El Producto no pudo ser insertado =(']);
+
+        if ($valid) {
+            $sql = "INSERT INTO productos(nombre, marca, modelo, precio, detalles, unidades, imagen) VALUES ('{$jsonOBJ->nombre}' , '{$jsonOBJ->marca}', '{$jsonOBJ->modelo}', '{$jsonOBJ->precio}', '{$jsonOBJ->detalles}', '{$jsonOBJ->unidades}', '{$jsonOBJ->imagen}')";
+            
+            if ($link->query($sql) === TRUE) {
+                echo json_encode(['success' => 'El producto fue insertado con éxito. Nombre: ' . $jsonOBJ->nombre . ', Marca: ' . $jsonOBJ->marca . ', Modelo: ' . $jsonOBJ->modelo . ', Precio: ' . $jsonOBJ->precio . ', Detalles: ' . $jsonOBJ->detalles . ', Unidades: ' . $jsonOBJ->unidades . ', Imagen: ' . $jsonOBJ->imagen]);
+            } else {
+                echo json_encode(['error' => 'Error, el producto no pudo ser insertado']);
+            }
         }
     
         $link->close();
