@@ -62,42 +62,33 @@
     </script>
 </head>
 <body>
-    <form id="formularioProductos" action="http://localhost/practicas/p09/update_producto.php" method="post">
+    <form id="formularioProductos" action="http://localhost/practicas/p08/set_producto_v2.php" method="post">
         
         <h2>Información de los productos</h2>
         <fieldset>
             <legend>Insertar productos</legend>
 
             <ul>
-                <li><label for="form-nombre">Nombre:</label> <input type="text" name="nombre" id="form-nombre" value="<?= !empty($_POST['nombre']) ? $_POST['nombre'] : (!empty($_POST['nombre']) ? $_POST['nombre'] : '') ?>"></li>
+                <li><label for="form-nombre">Nombre:</label> <input type="text" name="nombre" id="form-nombre"></li>
                 <li><label for="form-marca">Marca:</label>
                     <select name="marca" id="form-marca">
                         <option value="">Seleccione una marca</option>
-                        <option value="Logitech" <?= (isset($_POST['marca']) && $_POST['marca'] == 'Logitech') ? 'selected' : '' ?>>Logitech</option>
-                        <option value="Nvidia" <?= (isset($_POST['marca']) && $_POST['marca'] == 'Nvidia') ? 'selected' : '' ?>>Nvidia</option>
-                        <option value="HyperX" <?= (isset($_POST['marca']) && $_POST['marca'] == 'HyperX') ? 'selected' : '' ?>>HyperX</option>
-                        <option value="NZXT" <?= (isset($_POST['marca']) && $_POST['marca'] == 'NZXT') ? 'selected' : '' ?>>NZXT</option>
+                        <option value="Logitech">Logitech</option>
+                        <option value="Nvidia">Nvidia</option>
+                        <option value="HyperX">HyperX</option>
+                        <option value="NZXT">NZXT</option>
                         <!-- Add more options as needed -->
                     </select>
                 </li>
-                <li><label for="form-modelo">Modelo:</label> <input type="text" name="modelo" id="form-modelo" value="<?= htmlspecialchars($_POST['modelo'] ?? '') ?>"></li>
-                <li><label for="form-precio">Precio:</label> <input type="number" name="precio" id="form-precio" value="<?= htmlspecialchars($_POST['precio'] ?? '') ?>"></li>
-                <li> <label for="form-detalles">Detalles:</label><br> <textarea name="detalles" id="form-detalles" rows="4" cols="20"><?= htmlspecialchars($_POST['detalles'] ?? '') ?></textarea> </li>
-                <li><label for="form-unidades">Unidades:</label> <input type="number" name="unidades" id="form-unidades" value="<?= htmlspecialchars($_POST['unidades'] ?? '') ?>"></li>
-                <li><label for="form-imagen">Imagen:</label> <input type="text" name="imagen" id="form-imagen" value="<?= htmlspecialchars($_POST['imagen'] ?? 'img/') ?>"></li>
-                <li><label for="form-eliminado">Eliminado:</label>
-                    <select name="eliminado" id="form-eliminado">
-                        <option value="">Seleccione una opción</option>
-                        <option value="0" <?= (isset($_POST['eliminado']) && $_POST['eliminado'] == '0') ? 'selected' : '' ?>>0</option>
-                        <option value="1" <?= (isset($_POST['eliminado']) && $_POST['eliminado'] == '1') ? 'selected' : '' ?>>1</option>
-                    </select>
-                </li>
-
-                <li><input type="hidden" name="id" value="<?= htmlspecialchars($_POST['id'] ?? '') ?>"></li>
+                <li><label for="form-modelo">Modelo:</label> <input type="text" name="modelo" id="form-modelo"></li>
+                <li><label for="form-precio">Precio:</label> <input type="number" name="precio" id="form-precio"></li>
+                <li> <label for="form-detalles">Detalles:</label><br> <textarea name="detalles" id="form-detalles" rows="4" cols="20"></textarea> </li>
+                <li><label for="form-unidades">Unidades:</label> <input type="number" name="unidades" id="form-unidades"></li>
+                <li><label for="form-imagen">Imagen:</label> <input type="text" name="imagen" id="form-imagen" value="img/"></li>
             </ul>
         </fieldset>
 
-        <input type="submit" value="Actualizar Producto">
+        <input type="submit" value="Agregar Producto">
         <input type="reset">
 
     </form>

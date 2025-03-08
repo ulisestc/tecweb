@@ -19,3 +19,59 @@ function init() {
     // SE LISTAN TODOS LOS PRODUCTOS
     // listarProductos();
 }
+
+$(document).ready(function(){
+    console.log("Jquery is ready!");
+    $('#product-result').hide();
+
+        $('#search').keyup(function(){
+            let search = $('#search').val();
+            console.log(search);
+
+            $.ajax({
+                url: './backend/product-search.php',
+                type: 'POST',
+                data: {search: search},
+
+                success: function(response){
+                    console.log(response);
+                    let products = JSON.parse(response);
+
+                    let template = '';
+                    let nombres = '';
+
+                    products.forEach(product => {
+                        let descripcion = '';
+                        descripcion += '<li>precio: '+product.precio+'</li>';
+                        descripcion += '<li>unidades: '+product.unidades+'</li>';
+                        descripcion += '<li>modelo: '+product.modelo+'</li>';
+                        descripcion += '<li>marca: '+product.marca+'</li>';
+                        descripcion += '<li>detalles: '+product.detalles+'</li>';
+
+                        template += `
+                        <tr productId="${product.id}">
+                            <td>${product.id}</td>
+                            <td>${product.nombre}</td>
+                            <td><ul>${descripcion}</ul></td>
+                            <td>
+                                <button class="product-delete btn btn-danger" onclick="eliminarProducto()">
+                                    Eliminar
+                                </button>
+                            </td>
+                        </tr>
+                    `
+
+                        nombres += `
+                            <li>${product.nombre}</li>
+                        `
+                    });
+
+                    $('#container').html(nombres);
+                    $('#product-result').show();
+
+                    $('#products').html(template);
+                }
+            });
+        })
+
+});
