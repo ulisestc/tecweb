@@ -23,6 +23,8 @@ function init() {
 $(document).ready(function(){
     console.log("Jquery is ready!");
     $('#product-result').hide(); //ocultamos caja de estado
+    let edit = false;
+    let editId = null;
 
     // Función para listar todos los productos
     function listarProductos() {
@@ -47,7 +49,7 @@ $(document).ready(function(){
                     template += `
                     <tr productId="${product.id}">
                         <td>${product.id}</td>
-                        <td>${product.nombre}</td>
+                        <td><a href="#" class="product-edit">${product.nombre}</a></td>
                         <td><ul>${descripcion}</ul></td>
                         <td>
                             <button class="product-delete btn btn-danger">
@@ -66,6 +68,7 @@ $(document).ready(function(){
     // Llamar a listarProductos al cargar la página
     listarProductos();
 
+    // Función para buscar productos
     $('#search').keyup(function(){
         let search = $('#search').val();
         console.log(search);
@@ -98,7 +101,7 @@ $(document).ready(function(){
                         template += `
                         <tr productId="${product.id}">
                             <td>${product.id}</td>
-                            <td>${product.nombre}</td>
+                            <td><a href="#" class="product-edit">${product.nombre}</a></td>
                             <td><ul>${descripcion}</ul></td>
                             <td>
                                 <button class="product-delete btn btn-danger">
@@ -122,6 +125,7 @@ $(document).ready(function(){
         }
     });
 
+    // Función para eliminar un producto
     $(document).on('click', '.product-delete', function(){
         if(confirm('¿Estás seguro de querer eliminar el producto?')){
             let element = $(this)[0].parentElement.parentElement;
@@ -148,6 +152,7 @@ $(document).ready(function(){
         }
     });
 
+    // Función para agregar un producto
     $('#product-form').submit(function(e){
         e.preventDefault();
         // SE OBTIENE DESDE EL FORMULARIO EL JSON A ENVIAR
@@ -156,6 +161,14 @@ $(document).ready(function(){
         var finalJSON = JSON.parse(productoJsonString);
         // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
         finalJSON['nombre'] = document.getElementById('name').value;
+
+            console.log(finalJSON);
+            
+        // Si estamos editando, agregamos el ID al JSON
+        if (edit) {
+            finalJSON['id'] = editId;
+        }
+
         // SE OBTIENE EL STRING DEL JSON FINAL
         productoJsonString = JSON.stringify(finalJSON,null,2);
 
@@ -204,27 +217,57 @@ $(document).ready(function(){
             return;
         }
         else
-        {
-            $.post('./backend/product-add.php', productoJsonString, function(response){
+        {   
+            let url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
+            
+            $.post(url, productoJsonString, function(response){
                 console.log(response);
                 listarProductos();
                 
                 response = JSON.parse(response);
-                if(response.status == "success"){
-                    $('#container').html(`
-                                <li>Producto Agregado</li>
-                                `);
-                    $('#product-result').show();
-                }
-                else{
-                    $('#container').html(`
-                                <li>${response.status}, ${response.message}</li>
-                                `);
-                    $('#product-result').show();
-                }
+                // console.log(JSON.stringify(response));
+
+                $('#container').html(`
+                    <li>${response.status}, ${response.message}</li>
+                    `);
+                $('#product-result').show();
+
+                //limpiar campos
+                edit = false;
+                editId = null;
+                $('#product-form').trigger('reset');
+                document.getElementById("description").value = JSON.stringify(baseJSON, null, 2); // Restablece el JSON
             });
         }
     });
 
+    //Función para editar productos
+    $(document).on('click', '.product-edit', function(){
+        edit = true;
+
+        // console.log("editando. . .");
+        let element = $(this)[0].parentElement.parentElement;
+        let id = $(element).attr('productId');
+        editId = id;
+        console.log("editing id: "+id);
+        $.get('./backend/product-get.php', {id}, function(response){
+            // console.log(response);
+            let product = JSON.parse(response);
+            console.log(product);
+
+            let productoEditando = JSON.parse(JSON.stringify(baseJSON));
+            productoEditando["precio"] = parseFloat(product.precio);
+            productoEditando["unidades"] = parseFloat(product.unidades);
+            productoEditando["modelo"] = product.modelo;
+            productoEditando["marca"] = product.marca;
+            productoEditando["detalles"] = product.detalles;
+            productoEditando["imagen"] = product.imagen;
+
+            // //mostrar datos en formulario
+            document.getElementById('name').value = product.nombre;
+            document.getElementById('description').value = JSON.stringify(productoEditando,null,2);
+            $('#product-result').hide();
+        });
     });
-// });
+});
+
