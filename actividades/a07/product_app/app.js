@@ -239,6 +239,8 @@ $(document).ready(function(){
                 document.getElementById("description").value = JSON.stringify(baseJSON, null, 2); // Restablece el JSON
             });
         }
+
+        document.getElementById('primary-btn').innerText = "Agregar Producto";
     });
 
     //Función para editar productos
@@ -251,8 +253,8 @@ $(document).ready(function(){
         editId = id;
         console.log("editing id: "+id);
         $.get('./backend/product-get.php', {id}, function(response){
-            // console.log(response);
-            let product = JSON.parse(response);
+            console.log("response"+response);
+            let product = JSON.parse(response)[0];
             console.log(product);
 
             let productoEditando = JSON.parse(JSON.stringify(baseJSON));
@@ -268,6 +270,7 @@ $(document).ready(function(){
             document.getElementById('description').value = JSON.stringify(productoEditando,null,2);
             $('#product-result').hide();
         });
+        document.getElementById('primary-btn').innerText = "Editar Producto";
     });
 });
 
