@@ -119,63 +119,54 @@ $(document).ready(function(){
         }
     });
 
-    $('#product-form').submit(function(e){
+
+    $('#product-form').submit(e => {
         e.preventDefault();
-        // SE OBTIENE DESDE EL FORMULARIO EL JSON A ENVIAR
-        var productoJsonString = document.getElementById('description').value;
+
         // SE CONVIERTE EL JSON DE STRING A OBJETO
-        var finalJSON = JSON.parse(productoJsonString);
+        let postData = JSON.parse( $('#description').val() );
         // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
-        finalJSON['nombre'] = document.getElementById('name').value;
+        postData['nombre'] = $('#name').val();
+        postData['id'] = $('#productId').val();
 
-            console.log(finalJSON);
-            
-        // Si estamos editando, agregamos el ID al JSON
-        if (edit) {
-            finalJSON['id'] = $('#productId').val();
-        }
-            //     postData['id'] = $('#productId').val();
-
-
-        // SE OBTIENE EL STRING DEL JSON FINAL
-        productoJsonString = JSON.stringify(finalJSON,null,2);
-
-        //validaciones correspondientes
-        //validación de campos
+        /**
+         * AQUÍ DEBES AGREGAR LAS VALIDACIONES DE LOS DATOS EN EL JSON
+         * --> EN CASO DE NO HABER ERRORES, SE ENVIAR EL PRODUCTO A AGREGAR
+         **/
         let valid = true;
         let errorMessage = "";
 
-        if (finalJSON['nombre'].length === 0 || finalJSON['nombre'].length > 100) {
+        if (postData['nombre'].length > 100 || postData['nombre'].length == 0) {
             valid = false;
             errorMessage += "El nombre del producto no puede estar vacío o ser mayor a 100 caracteres\n";
         }
 
-        if (!["Logitech", "Nvidia", "HyperX", "NZXT"].includes(finalJSON['marca'])) {
+        if (!["Logitech", "Nvidia", "HyperX", "NZXT"].includes(postData['marca'])) {
             valid = false;
             errorMessage += "La marca del producto no es válida\n";
         }
 
-        if(finalJSON['modelo'].length> 25 || finalJSON['modelo'].match(/^[a-zA-Z0-9]+$/)){
+        if(postData['modelo'].length> 25 || postData['modelo'].match(/^[a-zA-Z0-9]+$/)){
             valid = false;
             errorMessage += "El modelo es requerido, debe ser alfanumérico y tener 25 caracteres o menos.\n";
         }
 
-        if (isNaN(finalJSON['precio']) || finalJSON['precio'] <= 99.99) {
+        if (isNaN(postData['precio']) || postData['precio'] <= 99.99) {
             valid = false;
             errorMessage += "El precio del producto no es válido (debe ser número y mayor a 99.99)\n";
         }
 
-        if(finalJSON['detalles'].length> 250){
+        if(postData['detalles'].length> 250){
             valid = false;
             errorMessage += "Los detalles del producto no pueden ser mayores a 250 caracteres\n";
         }
 
-        if (isNaN(finalJSON['unidades']) || finalJSON['unidades'] <= 0) {
+        if (isNaN(postData['unidades']) || postData['unidades'] <= 0) {
             valid = false;
             errorMessage += "Las unidades del producto no son válidas (debe ser número y mayor a 0)\n";
         }
 
-        if(finalJSON['imagen'].length > 50 || !finalJSON['imagen'].startsWith('img/')){
+        if(postData['imagen'].length > 50 || !postData['imagen'].startsWith('img/')){
             valid = false;
             errorMessage += "La URL de la imagen del producto no puede ser mayor a 50 caracteres y debe comenzar con 'img/'\n";
         }
@@ -184,70 +175,35 @@ $(document).ready(function(){
             alert(errorMessage);
             return;
         }
-        else
-        {   
-            let url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
+        else{
+            const url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
             
-            $.post(url, productoJsonString, function(response){
+            $.post(url, postData, (response) => {
                 console.log(response);
-                listarProductos();
-                
-                response = JSON.parse(response);
-                // console.log(JSON.stringify(response));
-
-                $('#container').html(`
-                    <li>${response.status}, ${response.message}</li>
-                    `);
+                // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
+                let respuesta = JSON.parse(response);
+                // SE CREA UNA PLANTILLA PARA CREAR INFORMACIÓN DE LA BARRA DE ESTADO
+                let template_bar = '';
+                template_bar += `
+                            <li style="list-style: none;">status: ${respuesta.status}</li>
+                            <li style="list-style: none;">message: ${respuesta.message}</li>
+                        `;
+                // SE REINICIA EL FORMULARIO
+                $('#name').val('');
+                $('#description').val(JsonString);
+                // SE HACE VISIBLE LA BARRA DE ESTADO
                 $('#product-result').show();
-
-                //limpiar campos
+                // SE INSERTA LA PLANTILLA PARA LA BARRA DE ESTADO
+                $('#container').html(template_bar);
+                // SE LISTAN TODOS LOS PRODUCTOS
+                listarProductos();
+                // SE REGRESA LA BANDERA DE EDICIÓN A false
                 edit = false;
-                editId = null;
-                $('#product-form').trigger('reset');
-                document.getElementById("description").value = JSON.stringify(baseJSON, null, 2); // Restablece el JSON
             });
         }
+
+        
     });
-    // $('#product-form').submit(e => {
-    //     e.preventDefault();
-
-    //     // SE CONVIERTE EL JSON DE STRING A OBJETO
-    //     let postData = JSON.parse( $('#description').val() );
-    //     // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
-    //     postData['nombre'] = $('#name').val();
-    //     postData['id'] = $('#productId').val();
-
-    //     /**
-    //      * AQUÍ DEBES AGREGAR LAS VALIDACIONES DE LOS DATOS EN EL JSON
-    //      * --> EN CASO DE NO HABER ERRORES, SE ENVIAR EL PRODUCTO A AGREGAR
-    //      **/
-        
-
-    //     const url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
-        
-    //     $.post(url, postData, (response) => {
-    //         console.log(response);
-    //         // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
-    //         let respuesta = JSON.parse(response);
-    //         // SE CREA UNA PLANTILLA PARA CREAR INFORMACIÓN DE LA BARRA DE ESTADO
-    //         let template_bar = '';
-    //         template_bar += `
-    //                     <li style="list-style: none;">status: ${respuesta.status}</li>
-    //                     <li style="list-style: none;">message: ${respuesta.message}</li>
-    //                 `;
-    //         // SE REINICIA EL FORMULARIO
-    //         $('#name').val('');
-    //         $('#description').val(JsonString);
-    //         // SE HACE VISIBLE LA BARRA DE ESTADO
-    //         $('#product-result').show();
-    //         // SE INSERTA LA PLANTILLA PARA LA BARRA DE ESTADO
-    //         $('#container').html(template_bar);
-    //         // SE LISTAN TODOS LOS PRODUCTOS
-    //         listarProductos();
-    //         // SE REGRESA LA BANDERA DE EDICIÓN A false
-    //         edit = false;
-    //     });
-    // });
 
     $(document).on('click', '.product-delete', (e) => {
         if(confirm('¿Realmente deseas eliminar el producto?')) {
