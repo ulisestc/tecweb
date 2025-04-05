@@ -116,6 +116,7 @@ $(document).ready(function(){
         }
         else {
             $('#product-result').hide();
+            listarProductos();
         }
     });
 
