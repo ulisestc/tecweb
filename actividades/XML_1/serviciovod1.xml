@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE servicioVOD SYSTEM "serviciovod.dtd" > -->
+<catalogoVOD>
+
+    <cuenta>
+        <correo>user_one@gmail.com</correo>
+        <perfiles>
+            <perfil>
+                <usuario>username1</usuario>
+                <idioma>Español</idioma>
+            </perfil>
+        </perfiles>
+    </cuenta>
+
+    <cuenta>
+        <correo>user_two@gmail.com</correo>
+        <perfiles>
+            <perfil>
+                <usuario>username2</usuario>
+                <idioma>English</idioma>
+            </perfil>
+        </perfiles>
+    </cuenta>
+
+    <contenido>
+        <peliculas>
+
+            <genero>
+                <nombre> Terror </nombre>
+                <titulo>
+                    <nombre>Anabelle</nombre>
+                    <duracion>120 mins</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Actividad Paranormal</nombre>
+                    <duracion>140 mins</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>La monja</nombre>
+                    <duracion>110 mins</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>IT</nombre>
+                    <duracion>150 mins</duracion>
+                </titulo>
+            </genero>
+
+            <genero>
+                <nombre> Romance </nombre>
+                <titulo>
+                    <nombre>Misterio de amor</nombre>
+                    <duracion>160 mins</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Tus ojos en mis ojos</nombre>
+                    <duracion>110 mins</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Te veo al rato</nombre>
+                    <duracion>130 mins</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>En tu corazón</nombre>
+                    <duracion>178 mins</duracion>
+                </titulo>
+            </genero>
+
+        </peliculas>
+
+        <programas>
+
+            <genero>
+                <nombre> Comedia </nombre>
+                <titulo>
+                    <nombre>Son como niños: la serie</nombre>
+                    <duracion>20 mins</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Bob Esponja</nombre>
+                    <duracion>14 mins</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Un show más</nombre>
+                    <duracion>15 mins</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Hora de Aventura</nombre>
+                    <duracion>24 mins</duracion>
+                </titulo>
+            </genero>
+
+            <genero>
+                <nombre> Suspenso </nombre>
+                <titulo>
+                    <nombre>Terremotos</nombre>
+                    <duracion>20 mins</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Osos rabiosos</nombre>
+                    <duracion>23 mins</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Corre por tu vida</nombre>
+                    <duracion>19 mins</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Love Death and Robots</nombre>
+                    <duracion>22 mins</duracion>
+                </titulo>
+            </genero>
+
+        </programas>
+
+    </contenido>
+</catalogoVOD>

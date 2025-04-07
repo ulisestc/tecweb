@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE servicioVOD SYSTEM "serviciovod.dtd" > -->
+<catalogoVOD>
+
+    <cuenta correo="user1@gmail.com">
+        <perfiles>
+            <perfil usuario="user1" idioma="English"/>
+        </perfiles>
+    </cuenta>
+
+    <cuenta correo="user2@gmail.com">
+        <perfiles>
+            <perfil usuario="user2" idioma="Español"/>
+        </perfiles>
+    </cuenta>
+
+    <contenido>
+        <peliculas>
+
+            <genero nombre ="Terror">
+                <duracion duracion="120 mins">
+                    <nombre>Anabelle</nombre>
+                </duracion>
+                <titulo duracion="140 mins">
+                    <nombre>Actividad Paranormal</nombre>
+                </titulo>
+                <titulo duracion="110 mins">
+                    <nombre>La monja</nombre>
+                </titulo>
+                <titulo duracion="150 mins">
+                    <nombre>IT</nombre>
+                </titulo>
+            </genero>
+
+            <genero nombre ="Romance">
+                <titulo duracion="160 mins">
+                    <nombre>Misterio de amor</nombre>
+                </titulo>
+                <titulo duracion="110 mins">
+                    <nombre>Tus ojos en mis ojos</nombre>
+                </titulo>
+                <titulo duracion="130 mins">
+                    <nombre>Te veo al rato</nombre>
+                </titulo>
+                <titulo duracion="140 mins">
+                    <nombre>En tu corazón</nombre>
+                </titulo>
+            </genero>
+
+        </peliculas>
+
+        <programas>
+
+            <genero nombre ="Comedia">
+                <titulo duracion="20 mins">
+                    <nombre>Son como niños: la serie</nombre>
+                </titulo>
+                <titulo duracion="15 mins">
+                    <nombre>Bob Esponja</nombre>
+                </titulo>
+                <titulo duracion="30 mins">
+                    <nombre>Un show más</nombre>
+                </titulo>
+                <titulo duracion="25 mins">
+                    <nombre>Hora de Aventura</nombre>
+                </titulo>
+            </genero>
+
+            <genero nombre ="Acción">
+                <titulo duracion="45 mins">
+                    <nombre>Terremotos</nombre>
+                </titulo>
+                <titulo duracion="50 mins">
+                    <nombre>Osos rabiosos</nombre>
+                </titulo>
+                <titulo duracion="60 mins">
+                    <nombre>Corre por tu vida</nombre>
+                </titulo>
+                <titulo duracion="22 mins">
+                    <nombre>Love Death and Robots</nombre>
+                </titulo>
+            </genero>
+
+        </programas>
+
+    </contenido>
+</catalogoVOD>
