@@ -54,10 +54,14 @@ $app->post('/product', function ($request, $response) {
 
 // Route to edit an existing product
 $app->put('/product/{id}', function ($request, $response, $args) {
-    $id = $args['id'];
-    $data = $request->getParsedBody();
+    // $id = $args['id'];
+    $body = $request->getBody()->getContents();
+    $data = json_decode($body);
+    $data->id = $args['id']; 
+
     $productos = new ProductsUpdate('marketzone');
-    $productos->edit($id, (object) $data);
+    $productos->edit($data);
+
     $response->getBody()->write(json_encode($productos->getData()));
     return $response->withHeader('Content-Type', 'application/json');
 });
